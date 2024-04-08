@@ -1,0 +1,70 @@
+% PhD Thesis Template: https://github.com/kks32/phd-thesis-template/blob/master/README.md
+
+\documentclass[a4paper,12pt,twoside,customfont,custombib,print]{Classes/PhDThesisPSnPDF}
+
+\pagestyle{PageStyleII}
+
+% Preamble
+\input{Preamble/preamble}
+
+% Thesis title and author information, refernce file for biblatex
+\input{thesis-info}
+
+% Abstract mode
+\ifdefineAbstract{}
+ \pagestyle{empty}
+ \includeonly{Abstract/abstract}
+\fi
+
+% Chapter Mode
+\ifdefineChapter{}
+ \includeonly{Chapter6/chapter6}
+\fi
+
+\usepackage[final]{changes}
+\usepackage{soul}
+
+\begin{document}
+
+% Frontmatter
+\frontmatter
+
+\maketitle
+
+% \includepdf[pages=-]{thesis-cover.pdf}
+
+\include{Declaration/declaration}
+\include{Acknowledgement/acknowledgement}
+\include{Abstract/abstract}
+
+% TOC
+\tableofcontents
+
+\listoffigures
+
+\listoftables
+
+\printnomenclature[5em]
+
+% Main Matter
+\mainmatter\
+
+\include{Nomenclatures/nomeclatures}
+\include{Chapter1/chapter1}
+\include{Chapter2/chapter2}
+\include{Chapter3/chapter3}
+\include{Chapter4/chapter4}
+\include{Chapter5/chapter5}
+\include{Chapter6/chapter6}
+\include{Chapter7/chapter7}
+
+% Bibliography
+\begin{spacing}{1.25}
+  \printbibliography[heading=bibintoc, title={References}]
+\end{spacing}
+
+\begin{appendices}
+  \input{Publication/publication}
+\end{appendices}
+
+\end{document}

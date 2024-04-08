@@ -1,0 +1,9 @@
+
+\begin{tabular}{lccc}
+  \toprule
+  \textbf{}              & \textbf{Feature Extractor $F$}    & \textbf{Generator $G$}                            & \textbf{Discriminator $D$}      \\
+  \midrule
+  Low-dimensional Tasks  & $(s^t_x, a^t_x)$ - 32 - 32 - 16   & $(\mathbf{f}_x)$ - 32 - 32 - $(a^t_\mathcal{L})$  & $(\mathbf{f}_x)$ - 32 - 32 - 1  \\
+  High-dimensional Tasks & $(s^t_x, a^t_x)$ - 128 - 128 - 64 & $(\mathbf{f}_x)$ - 128 - 64 - $(a^t_\mathcal{L})$ & $(\mathbf{f}_x)$ - 128 - 64 - 1 \\
+  \bottomrule
+\end{tabular}

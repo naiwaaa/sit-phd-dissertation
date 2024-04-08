@@ -1,0 +1,37 @@
+\begin{algorithm}
+  \caption{\DAIL{}}
+  \label{ch:DAIL:alg:ProposedModel}
+
+  \begin{algorithmic}[1]
+    \Input
+    \Desc{$\mathcal{D}_\mathcal{E}$}{A set of expert demonstrations}
+    \EndInput
+
+    \State Randomly initialize feature extractor network $F$, generator $G$ and discriminator $D$
+    \For {i = 0, 1, 2, ...}
+    \State Sample an expert demonstration $\tau^i_\mathcal{E} \sim \mathcal{D}_\mathcal{E}$
+    \State Update the parameters of feature extractor network $F$ with the gradient
+    \[\mathbf{E}[
+        \nabla_F log(D( \mathbf{f}_\mathcal{E} ))
+      ] + \mathbf{E}[
+        \nabla_F log(1 - D( \mathbf{f}_\mathcal{L} ))
+      ] - \lambda \mathbf{E}[
+        \nabla_F \left\|
+        \mathbf{f}_\mathcal{E} - \mathbf{f}_\mathcal{L}
+        \right\|
+      ]
+    \]
+    \State Update the discriminator parameters with the gradient
+    \[\mathbf{E}[
+        \nabla_D log(D( \mathbf{f}_\mathcal{E} ))
+      ] + \mathbf{E}[
+        \nabla_D log(1 - D( \mathbf{f}_\mathcal{L} ))
+      ]\]
+    \State Update policy $\pi_{L}$ with the reward signal $r=-logD(\mathbf{f}_\mathcal{E})$
+    \EndFor
+
+    \Output
+    \Desc{$\pi_{L}$}{Learned policy for learner domain}
+    \EndOutput
+  \end{algorithmic}
+\end{algorithm}

@@ -1,0 +1,21 @@
+In an episodic fixed-horizon MDP setting,
+an RL agent is assumed to
+
+\begin{itemize}
+  \item know the state space $\mathcal{S}$ and action space $\mathcal{A}$
+  \item know the immediate reward $R(s,a)$ when taking action $a$ after observing state $s$
+  \item does not know the transition function $P(\cdot|s,a)$
+\end{itemize}
+
+The agent can only learn about $P(\cdot|s,a)$ through interaction with the environment.
+Given an MDP process,
+the agent's goal is to find an optimal policy $\pi^*(a|s)$ that maximizes the expected discounted sum of rewards along trajectories $J(\pi)$.
+
+\[
+  J(\pi) = \mathbb{E}_\pi [\sum^H_{t=0} \gamma^t R(s^t,a^t)] = \mathbb{E}_\pi [\sum^H_{t=0} \gamma^t r^t]
+\]
+
+That is,
+$\pi^*(a|s)=\argmax_\pi J(\pi)$.
+The discount factor $\gamma$ values the immediate reward above delayed rewards.
+The following subsection briefly reviews several approaches to finding $\pi^*(a|s)$ in RL.

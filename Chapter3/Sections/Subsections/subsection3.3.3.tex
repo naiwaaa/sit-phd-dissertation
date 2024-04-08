@@ -1,0 +1,31 @@
+During the learning phase,
+in order to learn domain-shared features between $\mathcal{E}$ and $\mathcal{L}$ domains,
+the feature extractor $F$ and the generator $G$ are optimized to minimize the feature extractor loss $\mathfrak{L}_F$.
+At the same time,
+given a feature vector $\mathbf{f}_x$ of domain $x$,
+we want to judge whether $\mathbf{f}_x$ is from $\mathcal{E}$ or $\mathcal{L}$ by minimizing the domain classification loss $\mathfrak{L}_{GAN}$.
+This encourages domain-specific features to be captured by $F$.
+Overall, the full objective function is:
+
+\begin{align}
+   & \underset{F, G}{max} \underset{D}{min} \mathfrak{L}(F, G, D) \\
+   & \quad\text{subject to \:}
+  \mathfrak{L}(F, G, D) = {\mathfrak{L}_{GAN}(G, D)} - \lambda\mathfrak{L}_F
+\end{align}
+
+The goal is to find a saddle point, where:
+
+\begin{align}
+  (\hat{F}, \hat{G}) & = \underset{F, G}{argmax}{\mathfrak{L}(F, G, \hat{D})}    \\
+  \hat{D}            & = \underset{D}{argmin}{\mathfrak{L}(\hat{F}, \hat{G}, D)} \\
+\end{align}
+
+At the saddle point,
+the $\hat{D}$ minimizes the domain classification loss.
+The feature extractor $\hat{F}$ and the generator $\hat{G}$ minimize the distance between both domains (i.e. the features are shared between domains),
+while maximizing the domain classification loss (i.e. the features are specific to each domain).
+The parameter $\lambda$ controls the trade-off between domain-shared features and domain-specific features should be learned by $F$.
+
+The learning algorithm of the proposed agent is outlined in Algorithm \ref{ch:DAIL:alg:ProposedModel}.
+
+\input{Chapter3/Algorithms/algorithm.tex}

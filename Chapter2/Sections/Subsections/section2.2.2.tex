@@ -1,0 +1,37 @@
+Inverse reinforcement learning is a different approach to imitation learning.
+Its main idea is to learn a representation of the underlying reward function $R$ of the environment based on expert demonstrations.
+IRL parameterizes the reward function $R$ as a linear combination of features:
+
+\[
+  R(s,a) = \mathbf{w}^T \phi(s,a)
+\]
+
+where $\mathbf{w} \in \mathbb{R}^n$ is a weight vector and $\phi(s,a):\mathcal{S}\times\mathcal{A}\to\mathbb{R}^n$ denotes a feature vector.
+
+For a given feature map $\phi$,
+the goal of IRL is to determining the optimal weights $\mathbf{w}$ that maximizes the expected discounted sum of rewards along trajectories $J(\pi)$.
+
+\begin{align*}
+  J(\pi) & = \mathbb{E}_\pi [\sum^H_{t=0} \gamma^t R(s^t,a^t)]                  \\
+         & = \mathbf{w}^T \mathbb{E}_\pi [\sum^H_{t=0} \gamma^t  \phi(s^t,a^t)]
+\end{align*}
+
+It is important to note that,
+the optimal policy $\pi^*$ always produce a better $J(\pi)$:
+
+\begin{align*}
+  J(\pi^*)                                                                                & \geq J(\pi)                                                             & ,\forall \pi \\
+  \Leftrightarrow  \mathbf{w}^T \mathbb{E}_{\pi^*} [\sum^H_{t=0} \gamma^t  \phi(s^t,a^t)] & \geq \mathbf{w}^T \mathbb{E}_\pi [\sum^H_{t=0} \gamma^t  \phi(s^t,a^t)] & ,\forall \pi
+\end{align*}
+
+Given the above constraint,
+it can be seen that $\mathbf{w} = 0$ satisfies the condition.
+This problem is called reward ambiguity,
+one of IRL's main challenges.
+Besides,
+for most expert's behavior,
+there are many fitting reward functions.
+Thus,
+finding an optimal reward function can be quite challenging.
+Despite that,
+IRL can find a better policy than BC and can be applied in complex and long-term planning tasks.

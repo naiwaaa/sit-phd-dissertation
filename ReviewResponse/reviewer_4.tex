@@ -1,0 +1,126 @@
+\reviewer{Prof. Hideaki Kimata}
+
+% ---------
+% Comment 1
+% ---------
+
+\begin{revcomment}
+  How many epochs do you need to learn your GAN?
+\end{revcomment}
+\begin{revresponse}
+  Thank you very much for your question.
+
+  In the experiments, I utilized a number of Reinforcement learning and Imitation learning baseline methods.
+  They are converged and provided the best performance in under 200 epochs on all simple and complex tasks.
+  Therefore, in order to provide a fair comparison, I trained the proposed agents on only 200 epochs.
+
+  \begin{correction}
+    No correction was made in the dissertation.
+  \end{correction}
+\end{revresponse}
+
+% \begin{revcomment}
+%   Thank you for sending the graph.
+%   I can see tendency of the learning process.
+%   How do you interpret this learning curve?
+%   In general, the learning is stable, the curve should be saturated to a fix value.
+%   But the curve here keep increasing.
+%   I don't see such a saturated line in this graph.
+%   For example, 200 the learning is not complete because it is not saturated to a fix value.
+%   May be we add more epoch, the situation may be improved.
+%   How do you think?
+
+%   How many epoch it will converge?
+% \end{revcomment}
+% \begin{revresponse}
+%   \begin{changes}
+%   \end{changes}
+% \end{revresponse}
+
+% ---------
+% Comment 2
+% ---------
+
+% \begin{revcomment}
+%   Are there dependencies with respect to the nature of the task?
+%   For example,
+%   with respect to the time length of the task.
+% \end{revcomment}
+% \begin{revresponse}
+%   - Low-level manipulation behaviors
+%   - Robot dynamics
+% \end{revresponse}
+
+% ---------
+% Comment 3
+% ---------
+
+\begin{revcomment}
+  What are the dependencies of the initial values
+  when training your GAN?
+\end{revcomment}
+
+\begin{revresponse}
+  Thank you very much for your question.
+
+  The initial values is generated based on the default normal distribution with \(\mu = 0\) and
+  \(\phi = \frac{1}{\sqrt{\text{number of inputs}}}\).
+
+  \begin{correction}
+    No correction was made in the dissertation.
+  \end{correction}
+\end{revresponse}
+
+% ---------
+% Comment 4
+% ---------
+
+\begin{revcomment}
+  My concern is related to the situation when you applied your proposal in practical cases.
+  Cause your final target is real robots.
+  So I think in the simulated environment, failure cases are not so important.
+  But in the real environment, it is more important.
+\end{revcomment}
+\begin{revresponse}
+  Thank you very much for your question.
+
+  I also understand the main limitation of my dissertation is that all the experiments were conducted in simulated environments.
+  The performance of my proposed agent in the real-world environment still needs to be investigated.
+  Especially given the complex and dynamic physics of the real-world environment, their performance may significantly decrease.
+  However, it is important to highlight that my main research goal in this dissertation is to improve the generalization of imitation learning agents.
+  Although only simulated tasks were considered, the experimental results have demonstrated the effectiveness and potential of my proposed methods in developing a more general-purpose agent.
+
+  Moreover, many existing studies aim to help a trained agent in a simulated environment to be deployed to real-world environments \cite{zhao2020sim,liu2022digital,qin2023dexpoint}.
+  With the help of these methods,
+  I believe that my dissertation can be further extended and applied to the real-world environment while maintaining its high performance.
+  In addition,
+  I also listed a number of future research directions that can improve the agent's performance as discussed in sub-section 7.2 on pages 91-92 of my dissertation.
+  In the future, I am very pleased to exploit these ideas in order to bring my proposed methods to real robots.
+
+  \printpartbibliography{zhao2020sim,liu2022digital,qin2023dexpoint}
+
+  \begin{correction}
+    No correction was made in the dissertation.
+  \end{correction}
+\end{revresponse}
+
+% ---------
+% Comment 5
+% ---------
+
+\begin{revcomment}
+  GAN is very unstable to train in image processing.
+  How did you solve it in Imitation Learning?
+\end{revcomment}
+\begin{revresponse}
+  Thank you very much for your suggestion.
+
+  During the training process of my proposed IL agents, I did not observe any instability.
+  The GAN network architecture is originally proposed in the image processing field where the input can be an image with a high dimensionality.
+  However, in my case, the input is a small-size state vector which is significantly simpler compared to an image.
+  Therefore, GAN can easily extract useful features, resulting in a stable training process and a high performance as demonstrated in the experimental results.
+
+  \begin{correction}
+    No correction was made in the dissertation.
+  \end{correction}
+\end{revresponse}

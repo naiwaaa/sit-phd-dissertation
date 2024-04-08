@@ -1,0 +1,47 @@
+In Chapters \ref{ch:DAIL} and \ref{ch:TAIL}, the domain and task adaptation problems in IL were addressed individually.
+Although \DAIL\ and \TAIL\ agents can provide a competitive performance compared to other baselines, there is still an enormous difference between human ability and IL agents.
+\DAIL\ and \TAIL\ are designed to leverage the learned knowledge to accelerate the acquisition of the new target domain/task.
+Thus,
+the learning performance on the target domain/task may be improved in exchange for the deterioration of the source domain/task's performance.
+In other words,
+the agent forgets how to perform the previously learned domain/task when learning a new one,
+which is described as the catastrophic forgetting problem~\cite{TL_Forgetting_1, TL_Forgetting_2}.
+On the contrary,
+humans can perform well on both source and target tasks on different domains.
+
+To address the aforementioned gap, a novel challenge on domain and task adaptation in imitation learning is discussed in this chapter,
+in which a trained agent on a source task faces a new target task and must optimize its overall performance on both tasks.
+In order words,
+the main goal is to
+help the agent achieve high learning performance on the target task,
+while avoiding performance deterioration on the source task.
+It is important to note that in this chapter,
+the agent is trained and performed on different domains.
+
+The problem can be served as a step toward building a general-purpose agent.
+As one illustrative example, consider a household robot learning to assist its human owner.
+Initially,
+the human might want to teach the robot to load clothes into the washer by providing demonstrations of the task.
+At a later time,
+the user could teach the robot to fold clothes.
+These tasks are related to each other since they involve manipulating clothes,
+hence the robot is expected to perform well on both tasks and leverage any relevant knowledge obtained from loading the washer while folding clothes.
+In order to achieve such a knowledge transfer ability,
+a task adaptation method for imitation learning is proposed in this chapter.
+Being inspired by the idea of repetition learning in neuroscience \cite{Memory_Effect_1, Memory_Repetition_1, Memory_Repetition_2},
+the general idea of the proposed method is to make the agent repeatedly review the learned knowledge of the source task while learning the target task at the same time.
+Accordingly,
+the proposed method is two-fold.
+Firstly,
+to allow the agent to repeatedly review the learned knowledge of the source task,
+a task adaptation algorithm is proposed.
+In the adaptation process,
+the learned knowledge is expanded by adding the knowledge of the target task.
+Secondly,
+a novel IL agent which is capable of finding an optimal policy using expert-generated demonstrations,
+is proposed.
+This agent allows the learned knowledge of the source task to be encoded into a high-dimensional vector,
+namely task embedding,
+which then supports the knowledge expansion in the adaptation process.
+The evaluation results show that the proposed method has a better learning ability compared to existing transfer learning
+approaches.

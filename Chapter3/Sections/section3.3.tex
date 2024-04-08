@@ -1,0 +1,21 @@
+In this section,
+the proposed \DAIL{} agent is introduced.
+The agent relies on learning the domain-shared and domain-specific features in order to recover expert behaviors and adapt them to the learner agent domain.
+The architecture of the proposed agent is illustrated in Figure \ref{ch:DAIL:fig:Architecture}.
+The agent includes three deep feed-forward networks $F$, $G$, and $D$ that holds different responsibilities.
+
+\begin{figure}[htbp!]
+  \centering
+  \includegraphics[width=\linewidth]{\FigsDir/new_Architecture.png}
+  \caption{\added{The neural network architecture of the proposed \DAIL{} agent.}}
+  \label{ch:DAIL:fig:Architecture}
+\end{figure}
+
+\subsection{Feature Extractor Network \texorpdfstring{$F$}{F}}
+\input{\SectionsDir/Subsections/subsection3.3.1}
+
+\subsection{Discriminator Network \texorpdfstring{$D$}{D} and Generator Network \texorpdfstring{$G$}{G}}
+\input{\SectionsDir/Subsections/subsection3.3.2}
+
+\subsection{Full Objective}
+\input{\SectionsDir/Subsections/subsection3.3.3}

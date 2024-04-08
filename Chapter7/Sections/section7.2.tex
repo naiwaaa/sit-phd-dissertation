@@ -1,0 +1,72 @@
+This section outlines several directions for future research opportunities based on this dissertation.
+
+\begin{description}
+
+  \item[Non-episodic MDPs]
+        As discussed in Chapter~\ref{ch:Background},
+        all proposed agents in this dissertation are designed for the episodic MDPs setting.
+        For other important non-episodic settings,
+        such as infinite time horizon MDPs,
+        the performance of those agents is unknown.
+        It would be beneficial to investigate to what extent the proposed agents developed in this dissertation can be applied to this setting.
+
+  \item[Sim-to-Real Transfer]
+        A limitation of this dissertation is that all the experiments were conducted in simulated environments.
+        It would be interesting to observe the performance of the proposed agents on real robots.
+        Moreover,
+        in a sim-to-real transfer setting,
+        the simulation and the physical robot can be considered as two different domains.
+        Therefore,
+        the adaptation algorithm proposed in Chapter~\ref{ch:DTAIL} can be applied in which the agent is first trained in simulation and then adapted to the real environment.
+        In other words,
+        the physical robot can go through the same adaptation process as the \DTAIL\ agent but learn to use the physics and dynamics of the real world.
+        This approach could provide a very useful tool to make imitation learning agents more practical.
+
+  \item[Neuroscience]
+        By leveraging the idea of repetition learning in neuroscience,
+        the \DTAIL\ agent has achieved high performance on both source and target tasks.
+        Moreover,
+        allowing the agent to repeatedly review its knowledge while learning a new task reduced the deterioration of the learning performance on the source task while ensuring that the learning performance on the target task is high.
+        The result has proved the potential of applying neuroscience ideas in training an imitation learning agent.
+        It is,
+        therefore,
+        an interesting challenge to leverage other neuroscience ideas,
+        such as forgetting curve,
+        recency effect,
+        etc.,
+        to develop agents with better generalization.
+        For example,
+        the forgetting curve characteristic is a natural process,
+        describing the exponential loss of memory over time~\cite{Neuroscience_Ebbinghaus2013}.
+        It can be formulated as the following equation~\cite{Neuroscience_Ebbinghaus2013}:
+
+        \[R = e^{-\dfrac{t}{S}}\]
+
+        where $R$ is memory retention,
+        $S$ is the relative strength of memory,
+        and $t$ is the time.
+        The proposed adaptation algorithm in Chapter~\ref{ch:DTAIL} uses probability to decide,
+        at time step $t$,
+        whether the agent needs to review its learned knowledge on the source task or continue learning the new target task.
+        Instead,
+        using the above equation,
+        the algorithm can decide based on the memory retention of the source task's knowledge.
+        This approach may allow the agent to reduce repetition times while maintaining the same performance on both source and target tasks.
+        This could be an interesting idea to reduce the adaptation time and provide better feature learning.
+
+  \item[Lifelong (Continual) learning]
+        The \DTAIL\ agent is able to generalize the knowledge learned from a source task to a new target task and perform well on both tasks.
+        A logical next step is to adapt the learned agent to not only one but multiple novel target tasks,
+        which is the goal of lifelong learning.
+        However,
+        there are several challenges that need to be considered,
+        such as maintaining performance on previously learned tasks while learning new tasks,
+        reusing past knowledge to speed up learning new tasks,
+        and improving performance on previously learned tasks from newly acquired knowledge.
+        Existing approaches in lifelong learning can be combined with the adaptation method proposed in Chapter~\ref{ch:DTAIL} in order to address those challenges while improving the agent's generalization.
+        It is exciting to develop such a method to provide a general-purpose agent that can become a better learner over time,
+        i.e.,
+        learning new tasks better and faster,
+        and performing better on previously learned tasks.
+
+\end{description}

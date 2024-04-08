@@ -1,0 +1,76 @@
+\added{RL has been primarily limited to
+  tasks in which a well-defined reward function is given.
+  However,
+  the assumption of having access to a reward function is not feasible in complex tasks or the real-world environment.
+  For example,
+  consider the task of learning a good policy for autonomous driving.
+  While a human driver is able to drive safely on roads,
+  he/she may not be able to mathematically formulate a reward function that accurately represents good driving behaviors.
+  Moreover,
+  it may be impossible to design such a reward function given the dynamics of the environment
+  (e.g.,
+  stoplights,
+  safety signs,
+  traffic jams,
+  pedestrians,
+  etc.)
+  Without a good reward function,
+  RL is not practical for the autonomous driving problem.
+}
+
+Fortunately,
+a good policy can still be learned by directly imitating demonstrations provided by an expert.
+This approach to learning a policy by mimicking an expert's behaviors to accomplish a task is called imitation learning.
+In IL,
+the expert can be referred to as the teacher,
+while the agent is the learner.
+IL does not require the explicit design of a reward function.
+Moreover,
+since the expert demonstrations directly provide rich information regarding how to perform the task optimally,
+IL typically requires fewer interactions with the environment than RL.
+
+In imitation learning setting,
+a task can be formulated as an MDP without a reward function,
+i.e.,
+$\mathbb{M}^- = \mathbb{M} \setminus R = (\mathcal{S},\mathcal{A},P,\gamma,H)$
+Thus,
+in an episodic fixed-horizon MDP setting,
+an IL agent is assumed to
+
+\begin{itemize}
+  \item know the state space $\mathcal{S}$,
+        action space $\mathcal{A}$
+  \item does not know the immediate reward $R(s,a)$ when taking action $a$ after observing a state $s$
+  \item does not know the transition distribution $P(\cdot|s,a)$ and the reward function $R$
+\end{itemize}
+
+Formally,
+the IL agent is provided with a set of expert demonstration $\mathcal{D}_\mathcal{E} = \{ \tau^i_\mathcal{E} : i \in [1,N] \}$ that is collected by letting the expert interact in the task MDP $\mathbb{M}^-$.
+Each $\tau^i_\mathcal{E} = \{ (s^t,a^t):t \in [0,H] \} = (s^0,a^0,\dots,s^H,a^H)$ denotes a single demonstration or an episode,
+which is a sequence of state-action pairs.
+The goal of the IL agent is to learn an optimal policy $\pi^*(a|s)$ against unknown reward function $R$,
+given the expert demonstrations $\mathcal{D}_\mathcal{E}$.
+Since the agent does not have access to immediate rewards during the learning process,
+IL is considered to be more challenging compared to reinforcement learning.
+
+There are two approaches to training an IL agent.
+
+\begin{description}
+  \item[Direct]
+        This approach utilizes supervised learning to learn a policy from expert demonstrations.
+        An example of this approach is \textit{Behavior cloning} (BC).
+
+  \item[Indirect]
+        This approach learns the unknown reward function using expert demonstrations and derives an optimal policy from it.
+        An example of this approach is \textit{Inverse reinforcement learning} (IRL).
+\end{description}
+
+In the following subsections,
+BC and IRL are introduced in detail.
+
+
+\subsection{Behavior Cloning}
+\input{\SubsectionsDir/section2.2.1}
+
+\subsection{Inverse Reinforcement Learning}
+\input{\SubsectionsDir/section2.2.2}

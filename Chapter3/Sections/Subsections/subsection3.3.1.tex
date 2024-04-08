@@ -1,0 +1,13 @@
+A state-action pair $(s^t_x, a^t_x)$ in domain $x$ is \added{sampled from a replay buffer \cite{zhang2017deeper} and} input to the feature extractor $F$ to produce a feature vector $\mathbf{f}_x=F(s^t_x, a^t_x)$.
+$F$ is trained to capture the structural similarities or the shared features between $\mathcal{E}$ and $\mathcal{L}$ domains by minimizing the distance between two features $\mathbf{f}_\mathcal{E}$ and $\mathbf{f}_\mathcal{L}$.
+Therefore, the loss function of $F$ is defined as:
+
+\begin{align}
+  \mathfrak{L}_F (F, G) & = \mathbb{E} \left[ \left\|
+    F(s^t_\mathcal{E}, a^t_\mathcal{E}) - F(s^t_\mathcal{L}, a^t_\mathcal{L})
+  \right\| \right]                                    \\
+                        & = \mathbb{E} \left[ \left\|
+    F(s^t_\mathcal{E}, a^t_\mathcal{E}) - F( s^t_\mathcal{L}, G( F( s^t_\mathcal{E}, a^t_\mathcal{E} ) ) )
+    \right\| \right]
+  % 1/T \sum^{}_{}{|| f() - f() ||^2_2}
+\end{align}

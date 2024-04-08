@@ -1,0 +1,33 @@
+% TRPO
+% Pendulum:
+%       Mean:  -135.73463514842086    Std:  83.24276932922322
+% CartPole:
+%       Mean:  497.13       Std:  28.55613944496
+% Acrobot:
+%       Mean:  -63.18       Std:  7.047524388038681
+
+% GAMA
+% Acrobot:
+%       Mean: -386.31   Std: 49.20
+% Pendulum-CartPole:
+%       Mean:  144.03   Std:  89.08574016081361
+% Acrobot-CartPole:
+%       Mean: 1
+% Our
+% Acrobot:
+%       Mean:  -83.31   Std:  32.61248073974134
+% Pendulum-CartPole:
+%       Mean:  289.74   Std:  171.20727905086278
+% Acrobot-CartPole:
+%       Mean:  153.86 Std:  81.79371294405652
+%
+
+\begin{tabular}{cccc}
+  \toprule
+  \textbf{Task}     & \textbf{\DAIL{}}    & \textbf{GAMA-PA\cite{DAIL_Model_DAIL}} & \textbf{TRPO} \cite{RL_TRPO} \\
+  \midrule
+  Pendulum-Acrobot  & -83.31 $\pm$  32.61 & -386.31 $\pm$ 49.20                    & -63.18 $\pm$  7.05           \\
+  Pendulum-CartPole & 289.74 $\pm$ 171.21 & 144.03 $\pm$ 89.09                     & 497.13 $\pm$ 28.56           \\
+  Acrobot-CartPole  & 153.86 $\pm$  81.79 & 93.05 $\pm$ 88.97                      & 497.13 $\pm$ 28.56           \\
+  \bottomrule
+\end{tabular}

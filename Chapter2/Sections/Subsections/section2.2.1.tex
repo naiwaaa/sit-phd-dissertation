@@ -1,0 +1,25 @@
+Behavioral cloning directly learns a policy using supervised learning on state-action pairs from expert demonstrations.
+The IL agent is trained to reproduce the expert behaviors: for a given state,
+the action taken by the agent must be the one taken by the expert.
+In other words,
+for any given expert state-action
+pair $(s,a)$,
+BC treat the state $s$ as the label and the action $a$ as the target.
+Then,
+IL becomes a classification or regression problem with state as the input and action as the output.
+
+BC is a simple approach and does not require any interaction with the MDP,
+but the learned policy often poorly generalizes.
+The main reason for this is the assumption: supervised learning assumes that the state-action pairs are independent.
+However,
+in MDP,
+an action in a given state induces the next state,
+which breaks the previous assumption.
+Moreover,
+a mistake made by the agent can easily add up and put it into a state that the expert has never visited and the agent has never trained on.
+In such states,
+the behavior is undefined,
+leading to catastrophic failures.
+Therefore,
+although the main advantage of BC is its simplicity,
+it is unsuitable for tasks requiring long-term planning.

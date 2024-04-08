@@ -1,0 +1,71 @@
+\subsection{Imitation Learning Approaches}
+
+Reinforcement learning (RL) is an effective method to solve sequential decision-making tasks,
+where a learning agent interacts with the environment to improve its performance through trial and error~\cite{RL_AnIntroductionBook}.
+RL has achieved exceptional success in challenging tasks, such as object manipulation~\cite{RL_Object_1, RL_Object_2, RL_Object_3, RL_Object_4},
+game playing~\cite{RL_Game_1, RL_Game_2, RL_Game_3, RL_Game_4},
+and autonomous driving~\cite{RL_Driving_1, RL_Driving_2, RL_Driving_3, RL_Driving_4}.
+Despite its remarkable advancement,
+RL still faces appealing difficulties caused by the need of a reward function~\cite{RL_Challenges_1, RL_Challenges_2}.
+For each task that the agent has to accomplish,
+a carefully designed reward function must be provided.
+However,
+designing a hand-crafted reward function may require too much time or expense, especially in complex tasks.
+This problem has motivated a number of research studies on imitation learning (IL),
+where expert-generated demonstration data are provided instead of a reward function in order to help the agent learn how to perform a task~\cite{IL_Survey_1, IL_Survey_2}.
+% where such a reward function is estimated based on expert-generated demonstration data before any other procedure.
+% where the learning agent tries to first estimate a reward function using expert-generated demonstration data and then learns an optimal policy from that estimation.
+For this reason, IL has been growing in popularity and achieved some successes in numerous tasks, including robotics control~\cite{IL_Robotics_1, IL_Robotics_2, IL_Robotics_3} and autonomous driving~\cite{IL_Driving_1, IL_Driving_2, IL_Driving_3, IL_Driving_4}.
+
+A simple approach to imitation learning is Behavioral Cloning (BC) \cite{pomerleau1989alvinn}, mimics such demonstrations by learning the policy through supervised learning.
+Despite successfully applied in many control problems \cite{pomerleau1989alvinn,duan2017one,rahmatizadeh2018vision}, BC was found vulnerable to cascading errors \cite{ross2011reduction}.
+On the other hand, Inverse Reinforcement Learning (IRL) \cite{ng2000algorithms} methods try to recover a reward function from the expert demonstrations \cite{ng2000algorithms,abbeel2004apprenticeship,levine2011nonlinear,ziebart2008maximum}.
+This reward function is then used to optimize an imitation policy by running a standard reinforcement learning \cite{finn2016guided,kalakrishnan2013learning}.
+Accordingly, IRL has succeeded in a wide range of tasks \cite{arora2021survey,naumann2020analyzing,bing2020energy,zelinsky2020predicting}.
+However, in order to train an IRL model, it requires iterations of reinforcement learning, which can be extremely computational expensive for high-dimensional tasks.
+Recently, Generative Adversarial Network \cite{GAN_Original} has been introduced and successfully employed to tackle complex challenges in image generation, translation and enhancement \cite{GAN_CAPTCHA,GAN_MRI,GAN_ImageCompression,GAN_ImageTranslation}.
+Inspired by the great ability of GAN,
+recent studies \cite{IL_Model_GAIL,pmlr-v70-baram17a,behbahani2019learning,10.5555/3294996.3295138,zhang2020cgail,chi2020collaborative,zhou2020modeling}
+have applied
+it in imitation learning
+to define expert behaviors by fitting the distributions of states and actions.
+These models outperform competing methods when applying to complex high-dimensional tasks over various amounts of expert data.
+
+\subsection{Domain Adaptation Approaches in Imitation Learning}
+
+The common major weakness of the above-mentioned agents is that they require the experts to provide demonstrations in the same
+configuration and
+domain as the learners (i.e., the agents' domain).
+Thus, the presence of a shift between the expert and learner domains may lead to a significant performance deterioration of those agents.
+A popular approach is to employ a domain adaptation, which attempts to recover the learned policy from one domain and to adapt it to a different domain.
+The work in \cite{DAIL_Model_ThirdPerson} proposed an agent to recover domain-agnostic features and utilized it to find optimal policies in the setting of third person imitation, in which the expert and learner observations come from different views.
+Furthermore, the authors in \cite{DAIL_Model_DAIL} introduced a two-step approach that could be applied to imitate demonstrations observed from a distinct domain.
+They proposed to find a state-action mapping between the expert and learner domains.
+After that, the learned mapping was utilized to adapt the learned policy to the learner domain.
+Although achieving high performance on low-dimensional tasks, the effectiveness of their methods on more complex high-dimensional tasks was not fully inspected yet.
+
+\subsection{Task Adaptation Approaches in Imitation Learning}
+
+Transfer learning (TL) aims to accelerate,
+adapt,
+and improve the agent's learning process on a new target task by transferring knowledge learned from the previous source task.
+Whereas TL has been intensively studied and shown appealing performance in supervised learning~\cite{TL_SL_1, TL_SL_2, TL_SL_3, TL_SL_4, TL_SL_5, TL_SL_6, TL_SL_7},
+it remains an open question in reinforcement learning and imitation learning fields.
+Fine tuning is the most explored approach for transfer learning in both RL and IL settings~\cite{TL_FineTuning_1, TL_FineTuning_2, TL_FineTuning_3}.
+In fine tuning,
+the RL/IL agent is pre-trained on a source task and then retrained to a new target task.
+Fine tuning does not require strong assumptions about the target domain,
+making it an easily applicable approach.
+There are different approaches to transfer learning that have been proposed, such as reward shaping~\cite{TL_RewardShaping_1, TL_RewardShaping_2, TL_RewardShaping_3},
+inter-task mapping~\cite{TL_InterTask_1, TL_InterTask_2, TL_InterTask_3},
+representation learning~\cite{TL_Representation_1, TL_Representation_2, TL_Representation_3},
+etc.
+However,
+these methods were designed for RL agents;
+directly applying them to transfer an IL agent does not necessarily lead to successful results since RL and IL differ in many factors.
+Moreover,
+the key challenge in transfer learning is catastrophic forgetting,
+in which the agent tends to unexpectedly lose the knowledge that was learned from the source task while transferring to the new target task.
+The reason is due to the changes in the agent's network parameters that are related to the source task getting overwritten to fulfill the target task's objectives~\cite{TL_Forgetting_1}.
+Therefore,
+TL methods are not suitable for an agent that revisits the earlier task.

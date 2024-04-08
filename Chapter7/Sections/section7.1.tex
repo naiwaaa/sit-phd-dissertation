@@ -1,0 +1,45 @@
+Generalizing between domains and tasks remains a challenging problem for imitation learning agents.
+Although an IL agent can solve a given task under a specific domain,
+they struggle to transfer their knowledge to new,
+unseen situations or environments.
+This dissertation attempts to address this shortcoming by utilizing adversarial learning in order to allow the agent to extract domain- and task-related features during its learning process.
+These features helped the agent to be able to transfer and adapt its learned knowledge from one source task to a new target task across different domains.
+
+In Chapter~\ref{ch:DAIL},
+\DAIL\ was first introduced to overcome the domain adaptation problem in imitation learning.
+The agent was able to learn the domain-shared and domain-specific features to adapt the learned knowledge from the expert domain to a distinct learner domain.
+It provided a high success rate on low-dimensional tasks without being affected by the presence of domain shift between expert and learner domains.
+Although its performance highly depended on the complexity of the tasks,
+\DAIL\ had proved the effectiveness of applying adversarial learning in imitation learning.
+
+In Chapter~\ref{ch:TAIL},
+the task adaptation problem was then focused on.
+The \TAIL\ agent was trained under a similar adversarial learning process compared to \DAIL\.
+The experimental results demonstrated that \TAIL\ can achieve high performance in a number of low-dimensional tasks.
+
+Finally,
+in Chapter~\ref{ch:DTAIL},
+in order to further exploit the potential of adversarial learning,
+the \DTAIL\ agent and an adaptation method were introduced to address both domain and adaptation problems under a more challenging setting in which the adapted agent has to perform consistently well on both source and target tasks.
+The proposed adaptation method consisted of two phases,
+including training and adaptation processes.
+The first training process allowed the agent to capture the underlying structure of the task and encode these features into a high-dimensional latent space.
+The second adaptation process utilized adversarial learning to expand the learned knowledge by adding the knowledge of the target task.
+Moreover,
+leveraging the idea of repetition learning in neuroscience,
+the agent was allowed to repeatedly review the previously learned source task while learning a new target task.
+A comprehensive evaluation over several simulated tasks with varying difficulty levels showed that the proposed method could provide high and consistent performance on both source and target tasks across different domains.
+
+
+In summary,
+the most significant contribution of this dissertation was demonstrating the effectiveness of adversarial learning in improving imitation learning generalization.
+From the experimental results,
+it could be observed that applying adversarial learning in the imitation learning agent's learning process can significantly improve generalization,
+allow the agent to adapt its learned behaviors,
+and produce a higher performance in unseen situations.
+Despite some limitations in the performance of the proposed agents,
+the results indicated their potential to be applied in practical imitation learning tasks.
+To conclude,
+while much work remains,
+this dissertation provides several contributions toward generalizable imitation learning,
+which can accelerate the widespread adoption of imitation learning in the real-world environment.

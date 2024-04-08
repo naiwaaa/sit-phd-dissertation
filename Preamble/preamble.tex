@@ -1,0 +1,94 @@
+\usepackage[l2tabu, orthodox]{nag}
+
+% Fonts
+\ifsetCustomFont
+  \RequirePackage{charter}
+\fi
+
+% Algorithms and Pseudocode
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+
+\algblock{Input}{EndInput}
+\algnotext{EndInput}
+
+\algblock{Output}{EndOutput}
+\algnotext{EndOutput}
+
+\newcommand{\Desc}[2]{\State \makebox[5.5em][l]{#1}#2}
+
+% Captions
+\RequirePackage[hang,justification=justified,font=small,labelfont=bf,labelsep=period]{caption}
+\usepackage{subcaption}
+
+% Figures
+\newcommand{\Figure}[3]{%
+  \begin{figure}[tbp!]
+    \centering
+    \includegraphics[width=#1]{#2}
+    \caption{#3}
+  \end{figure}
+}
+
+% Tables
+\usepackage{booktabs}
+\usepackage{multirow}
+
+\newcommand{\Table}[4]{%
+  \begin{table}[htbp!]
+    \centering
+    \caption{#2}
+    \input{#1}
+  \end{table}
+}
+
+% Nomenclatures
+\renewcommand\nomname{List of Abbreviations and Symbols}
+
+% Bibliography
+\ifuseCustomBib
+  \RequirePackage[backend=biber, style=ieee]{biblatex}
+  \addbibresource{References/references.bib}
+\fi
+
+% Layout of enumerate, itemize and description environments
+\usepackage{enumitem}
+
+% TOC depth
+\setcounter{secnumdepth}{2}
+\setcounter{tocdepth}{2}
+
+% Math
+\usepackage{bbm}
+
+\providecommand{\abs}[1]{\left\lvert#1\right\rvert}                    % |.|
+\providecommand{\br}[1]{\left(#1\right)}                               % (.)
+\providecommand{\sbr}[1]{\left[#1\right]}                              % [.]
+\providecommand{\ddfrac}[2]{\frac{\displaystyle #1}{\displaystyle #2}}
+
+\DeclareMathOperator*{\argmin}{argmin}
+\DeclareMathOperator*{\argmax}{argmax}
+
+% Rotate landscape page
+\usepackage{pdflscape}
+
+% Insert PDF file
+\usepackage{pdfpages}
+
+% Add spaces between paragraphs
+\setlength{\parskip}{0.6em}
+
+% Ragged bottom avoids extra whitespaces between paragraphs
+\raggedbottom
+
+% Custom commands
+\newcommand{\SectionsDir}{}
+\newcommand{\SubsectionsDir}{}
+\newcommand{\FigsDir}{}
+\newcommand{\TablesDir}{}
+
+\newcommand\DAIL{DAIL--GAN}
+\newcommand\TAIL{TAIL--GAN}
+\newcommand\DTAIL{DTAIL--GAN}
+
+\setstretch{1.25}

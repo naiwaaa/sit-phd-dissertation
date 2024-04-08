@@ -1,0 +1,176 @@
+\reviewer{Prof. Hiroaki Morino}
+
+% \begin{revcomment}
+%   In the figure depicted in slide 40,
+%   I understand that the state is predefined in expert demonstrations.
+%   If the new state exists in the learner environment, not exist in the expert demonstration.
+%   What will happen in imitation learning?
+% \end{revcomment}
+% \begin{revresponse}
+% \end{revresponse}
+
+% ---------
+% Comment 1
+% ---------
+
+\begin{revcomment}
+  I'm not sure, in training phase,
+  how can the model associate state $s_L$ with $s_E$ properly?
+  Because typically,
+  it is not always sure that similar states/new states exist in both learner and expert.
+  I think there are some limitations of imitation learning here.
+  What kind of criteria to associate $s_L$ with $s_E$?
+
+  \Figure{0.9\linewidth}{Chapter3/Figs/Architecture.png}%
+  {The neural network architecture of the proposed DAIL-GAN agent.\label{R2:DAIL:fig:Architecture}}
+\end{revcomment}
+
+\begin{revresponse}
+  Thank you very much for your valuable comment.
+
+
+  The state $s_\mathcal{L}$ and $s_\mathcal{E}$ are separately input to the Feature Extractor network.
+  They are not associated or combined as shown in Figure \ref{R2:DAIL:fig:Architecture}.
+  I am really sorry for the confusion.
+
+  Both DAIL-GAN and TAIL-GAN's architecture figures have the same problem.
+  Therefore, I have updated those figures as follows.
+
+  \Figure{0.9\linewidth}{Chapter3/Figs/new_Architecture.png}%
+  {The neural network architecture of the proposed DAIL-GAN agent.\label{R3:DAIL:fig:new_Architecture}}
+
+  \Figure{0.9\linewidth}{Chapter4/Figs/new_Architecture.png}%
+  {The neural network architecture of the proposed TAIL-GAN agent.\label{R3:TAIL:fig:new_Architecture}}
+
+  In the updated figures,
+  the state-action pairs from the learner environment and the expert demonstrations are collected into a replay buffer \cite{zhang2017deeper}.
+  A replay buffer is a buffer that stores and replays state-action pairs collected from interactions of the agent with the learner environment or expert demonstrations.
+  During training,
+  a state-action pair $(s^t_x, a^t_x)$ is randomly sampled from the buffer to be input to $F$.
+
+  \printpartbibliography{zhang2017deeper}
+
+  \begin{correction}
+    \begin{itemize}
+      \item Figure 3.2 on page 22 of the dissertation was updated as shown in Figure \ref{R3:DAIL:fig:new_Architecture} above.
+      \item Figure 4.1 on page 42 of the dissertation was updated as shown in Figure \ref{R3:TAIL:fig:new_Architecture} above.
+      \item The following sentence was modified on page 22: \enquote{A state-action pair $(s^t_x, a^t_x)$ in domain $x$ is \added{sampled from a replay buffer \cite{zhang2017deeper} and} input to the feature extractor $F$ to produce a feature vector $\mathbf{f}_x=F(s^t_x, a^t_x)$.}
+      \item The following sentence was modified on page 42: \enquote{A state-action pair $(s^t_x, a^t_x)$ in task $x$ is \added{sampled from a replay buffer \cite{zhang2017deeper} and} input to the feature extractor $F$ to produce a feature vector $\mathbf{f}_x=F(s^t_x, a^t_x)$.}
+    \end{itemize}
+  \end{correction}
+\end{revresponse}
+
+% ---------
+% Comment 2
+% ---------
+
+\begin{revcomment}
+  $s_L$ and $s_E$ are vectors and are assumed to have the same dimensions.
+  I think this assumption is very strict.
+  % The difference between $s_L$ and $s_E$ have to be minimum.
+\end{revcomment}
+
+\begin{revresponse}
+  Thank you very much for your comment.
+
+  The dimension of $s_L$ and $s_E$ can be set to be the same by applying the padding technique when implementing the agent.
+  For example, the dimension of $s_L$ is $(1, 3)$ with the value of $[1.0, 2.0, 3.0]$ and the dimension of $s_E$ is $(1, 5)$, $s_L = [1.0, 2.0, 3.0, 4.0, 5.0]$.
+  We can set the dimension of $s_L$ to (1, 5) by padding it with zeros, so it will become $s_L=[1.0, 2.0, 3.0, 0.0, 0.0]$.
+
+  This is related to implementation detail, thus, I didn't include this information in the slides.
+  I am really sorry for this inconvenience.
+
+  \begin{correction}
+    No correction was made in the dissertation.
+  \end{correction}
+\end{revresponse}
+
+% ---------
+% Comment 3
+% ---------
+
+% \begin{revcomment}
+%   Imitation learning agents do not have access to the reward signal.
+%   Thus, it might take more time to finish the learning compared to RL.
+%   It might be an essential problem of GAN.
+
+%   On the other hand,
+%   a brute-force or Q-Learning-based approach where all parameters are searched to obtain optimal value can be better.
+%   Moreover, in RL, some kind of structure is given in advancement and can reduce the time of learning.
+%   How is your proposal compare to such approaches?
+% \end{revcomment}
+% \begin{revresponse}
+%   Thank you very much for your comment.
+% \end{revresponse}
+
+% ---------
+% Comment 4
+% ---------
+
+\begin{revcomment}
+  You compared your method to TRPO.
+  In which case DAIL-GAN has benefits compared to TRPO?
+\end{revcomment}
+\begin{revresponse}
+  Thank you very much for your question.
+
+  TRPO is a Reinforcement learning method.
+  It can be applied to the task where a reward signal is well-defined or can easily be formulated.
+  However, the assumption of having access to a reward function is not feasible in complex tasks or the real-world environment.
+  The most important advantage of IL compared to RL is that IL agents do not require reward signals.
+  Therefore, IL agents can be applied to more difficult tasks in which it may be impossible to design such a reward function given the dynamics of the environment.
+
+  \begin{correction}
+    No correction was made in the dissertation.
+  \end{correction}
+\end{revresponse}
+
+% ---------
+% Comment 5
+% ---------
+
+% \begin{revcomment}
+%   Q-Learning based RL approach can adapt to changes in the environment by adapting the reward signal.
+%   Compared to IL, do they also have any benefits?
+% \end{revcomment}
+% \begin{revresponse}
+% \end{revresponse}
+
+% ---------
+% Comment 6
+% ---------
+
+\begin{revcomment}
+  I recommend adding some descriptions in the dissertation and slides,
+  which kind of tasks DAIL-GAN has more benefits compared to the RL approaches.
+  I recommend classifying the tasks: which one is suitable for RL, and which one is much better for IL.
+\end{revcomment}
+\begin{revresponse}
+  Thank you very much for your suggestions.
+
+  I have updated the dissertation to add the information of tasks in which our Imitation Learning agents are more suitable compared to RL agents.
+  The slides have also been updated in order to clarify this information.
+
+  \begin{correction}
+    The following sentences were updated on page 10 of the dissertation:
+
+    \enquote{\added{RL has been primarily limited to
+        tasks in which a well-defined reward function is given.
+        However,
+        the assumption of having access to a reward function is not feasible in complex tasks or the real-world environment.
+        For example,
+        consider the task of learning a good policy for autonomous driving.
+        While a human driver is able to drive safely on roads,
+        he/she may not be able to mathematically formulate a reward function that accurately represents good driving behaviors.
+        Moreover,
+        it may be impossible to design such a reward function given the dynamics of the environment
+        (e.g.,
+        stoplights,
+        safety signs,
+        traffic jams,
+        pedestrians,
+        etc.)
+        Without a good reward function,
+        RL is not practical for the autonomous driving problem.}}
+  \end{correction}
+\end{revresponse}

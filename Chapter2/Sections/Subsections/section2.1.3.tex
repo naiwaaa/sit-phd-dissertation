@@ -1,0 +1,65 @@
+\Figure{\textwidth}{\FigsDir/RL_Algorithms.png}%
+{Several examples of reinforcement learning algorithms.\label{ch:Background:fig:RL_Algorithms}}
+
+An overview of RL algorithms is illustrated in Figure~\ref{ch:Background:fig:RL_Algorithms}.
+RL algorithms can be divided into two main categories:
+
+\begin{description}
+  \item[Model-based algorithms]
+        Model-based algorithms aim to find the environment dynamics model.
+        In other words,
+        it tries to establish a complete MDP by estimating the transition and reward functions.
+        When the dynamics model is available,
+        the problem of finding an optimal policy is called \textit{planning}.
+        Several model-based algorithms include \textit{World models}~\cite{RL_Algo_WM},
+        \textit{Imagination-Augmented Agents} (I2A)~\cite{RL_Algo_I2A},
+        \textit{Model-Based Priors for Model-Free Reinforcement Learning} (MBMF)~\cite{RL_Algo_MBMF},
+        \textit{Model-Based Value Expansion} (MBVE)~\cite{RL_Algo_MBVE},
+        and \textit{AlphaZero}~\cite{RL_Algo_AlphaZero}.
+  \item[Model-free algorithms]
+        Model-free algorithms are data-driven and rely on trial-and-error experiences to find the optimal policy.
+        Due to the difficulties of establishing a complete MDP,
+        model-free algorithms have been the main focus of research compared to model-based algorithms.
+        Several model-free algorithms include \textit{Policy Gradient}~\cite{},
+        \textit{Asynchronous Advantage Actor-Critic} (A3C)~\cite{RL_Algo_A3C},
+        \textit{Proximal Policy Optimization} (PPO)~\cite{RL_Algo_PPO},
+        \textit{Trust Region Policy Optimization} (TRPO)~\cite{RL_Algo_TRPO},
+        \textit{Deep Deterministic Policy Gradients} (DDPG)~\cite{RL_Algo_DDPG},
+        \textit{Soft Actor-Critic} (SAC)~\cite{RL_Algo_SAC},
+        \textit{Twin Delayed Deep Deterministic Policy Gradients} (TD3)~\cite{RL_Algo_TD3},
+        \textit{Deep Q Neural Network} (DQN)~\cite{RL_Algo_DQN},
+        \textit{C51}~\cite{RL_Algo_C51},
+        \textit{Distributional Reinforcement Learning with Quantile Regression} (QR-DQN)~\cite{RL_Algo_QRDQN},
+        and \textit{Hindsight Experience Replay} (HER)~\cite{RL_Algo_HER}.
+\end{description}
+
+There are two main approaches to training an RL agent with model-free algorithms:
+
+\begin{description}
+  \item[Policy optimization]
+        Policy optimization seeks to directly learn $\pi^*(a|s)$ by applying gradient ascent on the objective $J(\pi)$.
+  \item[Q-learning]
+        Q-learning methods aim to discover the optimal policy by finding a policy that maximizes the action-value function $q_\pi(s,a)$.
+        The $q_\pi(s,a)$ is defined as the expectation of cumulative discounted rewards.
+        \[
+          q_\pi(s,a) = \mathbb{E}_\pi [\sum^H_{t=0} \gamma^t r^t | s^t=s,a^t = a]
+        \]
+        The optimal action-value function $q_{\pi^*}(s,a)$ is the maximum action-value function over all policies.
+        It indicates the maximum possible reward the agent can extract from the environment starting at state $s$ and taking action $a$.
+        \[q_{\pi^*}(s,a)=\max_\pi q_\pi(s,a)\]
+        In case $q_{\pi^*}(s,a)$ is known,
+        the agent can decide which action to take to maximize the return.
+        Thus,
+        it can behave optimally in the MDP and therefore solve the MDP task.
+\end{description}
+
+Policy optimization methods are more stable than Q-learning methods since they directly optimize the policy using numerical optimization techniques such as gradient ascent.
+In contrast,
+Q-learning methods indirectly find the optimal policy by optimizing $q_\pi(s,a)$.
+However,
+Q-learning has the advantage of being more data efficient since it can reuse data more effectively than policy optimization.
+Fortunately,
+many algorithms have been designed utilizing both methods to carefully trade-off between the strengths and weaknesses of either policy optimization or Q-learning methods,
+such as DDPG,
+TD3,
+and SAC.

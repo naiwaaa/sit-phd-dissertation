@@ -1,0 +1,297 @@
+\reviewer{Prof. Masaomi Kimura}
+
+
+% ---------
+% Comment 1
+% ---------
+
+
+\begin{revcomment}
+  In slide 38,
+  this diagram is really confusing for me.
+  The reason is that $F$ accepts 2 inputs from the learner environment and from the expert demonstrations.
+  It looks like $F$ merges those 2 inputs, but actually, it's not.
+  If we read the definition of your loss function defined in your dissertation,
+  it is very clear.
+  But the diagram is really confusing.
+  It might be better to separate inputs to $F$ so the reader can understand.
+
+  \Figure{\linewidth}{ReviewResponse/Figs/NB20501_PresentationMaterial_Slides_pages-to-jpg-0038.jpg}%
+  {Slide 38.}
+\end{revcomment}
+
+\begin{revresponse}
+  Thank you very much for your valuable comment.
+
+  I am really sorry for the confusion.
+
+  Both DAIL-GAN and TAIL-GAN's architecture figures have the same problem as you mentioned.
+  Therefore, I have updated those figures as follows.
+
+  \Figure{0.9\linewidth}{Chapter3/Figs/new_Architecture.png}%
+  {The neural network architecture of the proposed DAIL-GAN agent.\label{R3:DAIL:fig:new_Architecture}}
+
+  \Figure{0.9\linewidth}{Chapter4/Figs/new_Architecture.png}%
+  {The neural network architecture of the proposed TAIL-GAN agent.\label{R3:TAIL:fig:new_Architecture}}
+
+  In the updated figures,
+  the state-action pairs from the learner environment and the expert demonstrations are collected into a replay buffer \cite{zhang2017deeper}.
+  A replay buffer is a buffer that stores and replays state-action pairs collected from interactions of the agent with the learner environment or expert demonstrations.
+  During training,
+  a state-action pair $(s^t_x, a^t_x)$ is randomly sampled from the buffer to be input to $F$.
+
+  \printpartbibliography{zhang2017deeper}
+
+  \begin{correction}
+    \begin{itemize}
+      \item Figure 3.2 on page 22 of the dissertation was updated as shown in Figure \ref{R3:DAIL:fig:new_Architecture} above.
+      \item Figure 4.1 on page 42 of the dissertation was updated as shown in Figure \ref{R3:TAIL:fig:new_Architecture} above.
+      \item The following sentence was modified on page 22: \enquote{A state-action pair $(s^t_x, a^t_x)$ in domain $x$ is \added{sampled from a replay buffer \cite{zhang2017deeper} and} input to the feature extractor $F$ to produce a feature vector $\mathbf{f}_x=F(s^t_x, a^t_x)$.}
+      \item The following sentence was modified on page 42: \enquote{A state-action pair $(s^t_x, a^t_x)$ in task $x$ is \added{sampled from a replay buffer \cite{zhang2017deeper} and} input to the feature extractor $F$ to produce a feature vector $\mathbf{f}_x=F(s^t_x, a^t_x)$.}
+    \end{itemize}
+  \end{correction}
+\end{revresponse}
+
+% ---------
+% Comment 2
+% ---------
+
+\begin{revcomment}
+  Do you have description about the structure of $F$, $G$, $D$ in your dissertation?
+  Since you use GAN, the detail of network structure
+  (e.g., the number of layers,
+  the number of nodes in each layer, etc.)
+  is important to discuss the stability in GAN training.
+  The structure is very sensitive for training.
+  It is neccessary to explain why you use that structure in your neural network.
+\end{revcomment}
+
+\begin{revresponse}
+  Thank you very much for your valuable comment.
+
+  I have updated the dissertation in order to provide more information about the neural network structure of the DAIL-GAN agent.
+  Since the structure is relatively similar among the three proposed agents
+  (i.e., DAIL-GAN, TAIL-GAN, and DTAIL-GAN),
+  only the description in the DAIL-GAN chapter was updated.
+
+  In my GAN network,
+  since the dimension of the input is relatively small,
+  I simply used multi-layer perception (MLP) for $F$, $G$, and $D$.
+  The experimental results have shown that the network structure is sufficient enough to allow the agent to achieve high performance.
+
+  \begin{correction}
+    The following sentences was updated on page 29 of the dissertation:
+    \enquote{%
+      Deep feed-forward networks with 2 hidden layers are used for three $F$, $G$, $D$ networks of the proposed agent.
+      \added{Grid search was utilized in order to find an optimal set of network hyperparameters.
+        Since high-dimensional tasks are more challenging compared to low-dimensional tasks,
+        DAIL-GAN requires a higher number of nodes in each network layer in order to provide a high and consistent performance.}
+      The network hyperparameters are shown in Table \ref{R3:DAIL:tab:ModelHyperparameteres}.
+      In this experiment, the learning rate was 0.0003.
+      Adam was used as an optimizer.%
+    }
+
+    \Table{Chapter3/Tables/hyperparameters}%
+    {DAIL-GAN hyperparameters used in the experiment. Each number corresponds to the number of nodes in a network layer.\label{R3:DAIL:tab:ModelHyperparameteres}}
+  \end{correction}
+\end{revresponse}
+
+% ---------
+% Comment 3
+% ---------
+
+\begin{revcomment}
+  In slide 41,
+  you should describe the loss function directly instead of like this.
+  It will be much more precise and not confusing.
+
+  \Figure{\linewidth}{ReviewResponse/Figs/NB20501_PresentationMaterial_Slides_pages-to-jpg-0041.jpg}%
+  {Slide 41.}
+\end{revcomment}
+
+\begin{revresponse}
+  Thank you very much for your valuable comment.
+
+  I am really sorry for the confusion.
+  I have updated the slide in order to provide a better understanding about the loss function.
+
+  \begin{correction}
+    No correction was made in the dissertation.
+  \end{correction}
+\end{revresponse}
+
+% ---------
+% Comment 4
+% ---------
+
+\begin{revcomment}
+  In slide 49,
+  you wanted to compare the performance of your proposed DAIL-GAN agent to other baselines,
+  so I wonder why you put TRPO first on the table.
+  You should change the order of the columns because you compare your model with TRPO.
+
+  \Figure{\linewidth}{ReviewResponse/Figs/NB20501_PresentationMaterial_Slides_pages-to-jpg-0049.jpg}%
+  {Slide 49.}
+\end{revcomment}
+
+\begin{revresponse}
+  Thank you very much for your valuable suggestion.
+
+  I have updated the slides and dissertation in order to help the reader easily understand the table.
+
+  \printpartbibliography{DAIL_Model_DAIL, RL_TRPO}
+
+  \begin{correction}
+    \begin{itemize}
+      \item Table 3.3 on page 30 of the dissertation was updated as shown in Table \ref{R3:DAIL:tab:Reward_Simple} below.
+      \item Table 3.4 on page 35 of the dissertation was updated as shown in Table \ref{R3:DAIL:tab:Reward_Adroit} below.
+    \end{itemize}
+
+    \Table{Chapter3/Tables/simple_reward}%
+    {The performance of the proposed DAIL-GAN agent on low-dimensional tasks. These scores represent the cumulative rewards obtained from executing a learned policy in the simulator, averaged over 100 episodes.\label{R3:DAIL:tab:Reward_Simple}}
+
+    \Table{Chapter3/Tables/complex_reward}%
+    {The performance of the proposed DAIL-GAN agent on high-dimensional tasks. These scores represent the cumulative rewards obtained from executing a learned policy in the simulator, averaged over 100 episodes.\label{R3:DAIL:tab:Reward_Adroit}}
+
+  \end{correction}
+\end{revresponse}
+
+% ---------
+% Comment 5
+% ---------
+
+\begin{revcomment}
+  In slide 50,
+  I couldn't understand the relationship between the expert demonstrations and the models' outputs.
+  You should add description in these slides, it will be more understandable.
+
+  \Figure{\linewidth}{ReviewResponse/Figs/NB20501_PresentationMaterial_Slides_pages-to-jpg-0050.jpg}%
+  {Slide 50.}
+\end{revcomment}
+
+\begin{revresponse}
+  Thank you very much for your comment.
+
+  The figure illustrates an example of the agents' performance on the Pendulum-Acrobot task.
+  In the expert demonstrations,
+  expert behaviors were to apply a strong force,
+  expressed by a rotation velocity,
+  at first to make the pendulum swing upright.
+  After that,
+  a few light forces were applied to maintain it vertically.
+  The agents were adapted to another domain where the goal is to swing the end of the lower link as high as possible.
+
+  Observing from the figure,
+  GAMA-PA failed to apply strong enough forces to swing the lower link as high as my proposed DAIL-GAN agent.
+  Moreover, it can be seen that TRPO and DAIL-GAN can swing the lower link to a relatively similar high.
+  The result demonstrates the competitive performance of my proposed DAIL-GAN agent compared to the other baselines.
+
+  These information was discussed in my dissertation on page 34.
+  I am really sorry for not including them in the slides.
+  The slides have been updated to include the description of each figures.
+
+  \begin{correction}
+    No correction was made in the dissertation.
+  \end{correction}
+\end{revresponse}
+
+% ---------
+% Comment 6
+% ---------
+
+\begin{revcomment}
+  In slide 79, I have two questions.
+
+  \begin{itemize}
+    \item Why do you need to consider the catastrophic forgetting problem?
+          We can merge the dataset of source and target tasks, then we don't need to care about this problem.
+
+    \item What are A and B? I recommend putting a description to the slides.
+  \end{itemize}
+
+  \Figure{\linewidth}{ReviewResponse/Figs/NB20501_PresentationMaterial_Slides_pages-to-jpg-0079.jpg}%
+  {Slide 79.}
+\end{revcomment}
+
+\begin{revresponse}
+  Thank you very much for your questions and comments.
+
+  \begin{itemize}
+    \item
+          In existing studies, when an IL agent is adapted from a source task to a new target task,
+          it is trained using only the target task dataset.
+          Thus,
+          the agent only focuses on improving the target task's performance and tends to forget the learned knowledge of the source task resulting in a deterioration of the source task's performance.
+          This problem is known as the catastrophic forgetting problem.
+          On the other hand, my goal is to propose an adaptation method that can allow the agent to perform consistently well on both source and target tasks.
+          Therefore, I have to take into account the catastrophic forgetting problem in order to reduce its negative effect and retain the learned knowledge from the source task.
+
+          We can address the problem by merging the source and target task datasets so the agent can randomly learn the new target task or re-learn the source task.
+          However, this approach is not effective and does not ensure consistent performance of the agent on both source and target tasks.
+          In addition, it should be noted that the size of the training data will be increased, which can increase the training and adaptation time.
+          Moreover, during the adaptation phase, the agent will adapt its source task's learned knowledge to the target task.
+          In this process, the agent might improve and generalize their learned behaviors on both source and target tasks.
+          Thus, the expert behaviors on the source task dataset might become out-of-date compared to the agent's adapted behaviors and might not be optimal for the target task.
+          This can make the learning process of the agent unstable.
+          Finally, in practice, it is more convenient when we adapt to a target task using only target task demonstrations since the source task dataset may not always be available.
+    \item I am really sorry for the confusion.
+          A and B are two different vectors.
+          In my case, they are two feature vectors extracted by the Feature Extractor network $F$.
+          I am sorry for not including these descriptions in the slides.
+          The slides have been updated to clarify the definition of A and B.
+  \end{itemize}
+
+  \begin{correction}
+    No correction was made in the dissertation.
+  \end{correction}
+\end{revresponse}
+
+% ---------
+% Comment 7
+% ---------
+
+\begin{revcomment}
+  In slide 95,
+  the content here is the summarization of your studies, not a discussion.
+  You should discuss why DAIL-GAN could extract domain share.
+  Why it can extract the similarity, etc.?
+  That kind of why is important in the discussion slide.
+  My recommendation is that you should describe the reason why you got good results in the discussion section.
+
+  \Figure{\linewidth}{ReviewResponse/Figs/NB20501_PresentationMaterial_Slides_pages-to-jpg-0095.jpg}%
+  {Slide 95.}
+\end{revcomment}
+
+\begin{revresponse}
+  Thank you very much for your suggestion.
+
+  The reason why my proposed agent can achieve high performance was discussed in my dissertation on pages 83-84.
+  I am really sorry for not including them in the slides.
+  I have updated the slides in order to improve the discussion section.
+
+  \begin{correction}
+    No correction was made in the dissertation.
+  \end{correction}
+\end{revresponse}
+
+% ---------
+% Comment 8
+% ---------
+
+\begin{revcomment}
+  In your GAN, the stability of training is important to get good result.
+  Have you consider W-GAN to get stable output?
+\end{revcomment}
+
+\begin{revresponse}
+  Thank you very much for your suggestion.
+
+  During the training process of my proposed IL agents, I did not observe any instability.
+  The GAN network architecture is originally proposed in the image processing field where the input can be an image with a high dimensionality.
+  However, in my case, the input is a small-size state vector which is significantly simpler compared to an image.
+  Therefore, GAN can easily extract useful features, resulting in a stable training process and a high performance as demonstrated in the experimental results.
+
+  \begin{correction}
+    No correction was made in the dissertation.
+  \end{correction}
+\end{revresponse}

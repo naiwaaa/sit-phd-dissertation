@@ -1,0 +1,122 @@
+Robots play an essential role in humans' lives as they can enhance human productivity and quality of life in everyday activities.
+Moreover,
+it is used in many fields,
+from industry,
+agriculture,
+and transportation to healthcare and surgery.
+For instance,
+during the COVID-19 pandemic,
+due to the difficulties brought by the highly contagious SARS-CoV-2 virus and its associated lockdowns,
+robots have been widely applied in almost every aspect to manage the crisis and overcome the challenges of the pandemic,
+such as disinfecting hospital rooms,
+handling infectious materials,
+delivery to quarantined,
+etc.~\cite{RobotApplications_Covid19_Raje2021, RobotApplications_Covid19_Spectrum, RobotApplications_Covid19_Jiang2021, RobotApplications_Covid19_Javaid2020, RobotApplications_Covid19_Shen2021}
+
+However,
+before robots can be considerably helpful in practical day-to-day tasks in human-centered spaces
+--- spaces specifically designed for humans,
+not machines
+--- they need to be able to provide assistance to humans effectively.
+In order to allow robots to be more helpful,
+there are three main challenges that need to be considered.
+
+\begin{enumerate}
+  \item
+        Enabling robots to understand and apply their learned skills in order to solve a given task.
+  \item
+        Allowing robots and human interaction to be more efficient and natural.
+  \item
+        Generalizing the number of low-level robots' skills,
+        like manipulation,
+        to effectively perform other tasks in unseen situations.
+\end{enumerate}
+
+The first challenge can be tackled using \textit{reinforcement learning} (RL).
+RL is an effective method for solving sequential decision-making tasks by training an agent.
+During the learning process,
+the RL agent interacts with the environment through trial and error to collect experiences and improve its performance in order to solve a given task~\cite{RL_Sutton2018}.
+For example,
+to teach a robot to walk using RL,
+the agent initially may decide to take a big step forward,
+then fall.
+The next time the agent takes a minor step and is able to maintain its balance.
+The RL agent improves its walking performance by trying variations like that a number of times.
+Finally,
+it can succeed in learning to walk steadily.
+In addition,
+the example shows that the agent learns how to walk based on its received feedback after taking action.
+The feedback can be a reward (maintaining balance) or a penalty (falling).
+In RL,
+this feedback is called a reward function.
+For each task that the agent has to accomplish,
+a carefully designed reward function must be provided.
+
+However,
+designing a hand-crafted reward function may require too much time or expense,
+especially in complex tasks.
+Moreover,
+in order to address the second challenge,
+which is improving human-robot interaction,
+the RL agent has to perform naturally and provide human-like actions.
+Including these nonlinear and dynamic constraints in the reward function makes the challenge more difficult.
+Therefore,
+this problem has motivated a number of research studies on \textit{imitation learning} (IL),
+where expert-generated demonstration data are provided instead of a reward function in order to help the agent learn how to perform a task.
+
+In imitation learning,
+an expert (commonly a human) provides a set of demonstrations on a given task.
+The IL agent then tries to learn by following and imitating the expert's behaviors.
+IL is beneficial when it is easier for an expert to demonstrate the desired behavior than to specify a reward function.
+Moreover,
+since the agent is trained to imitate the expert's behaviors,
+it can behave like humans,
+which allows the agent's actions to be believable and appear natural.
+This characteristic of IL agents can significantly enhance human-robot interaction.
+
+Regardless,
+traditional IL agents are not able to overcome the third challenge,
+which is generalizing their learned behaviors to tackle new situations.
+The problem is referred to as \textit{generalization} in imitation learning and can be divided into two categories.
+
+\begin{description}
+  \item[Domain adaptation]
+        IL agents often overfit to the expert demonstrations by learning task-irrelevant features,
+        thus suffering from generalization to different structures in the task's environment
+        (e.g.,
+        different object positions,
+        size,
+        etc.)
+        from the ones seen in the demonstrations.
+        These environment variations are called domain shifts or distribution shifts.
+        Humans can recognize structural differences among the task's environments in order to adapt their behaviors accordingly.
+        On the other hand,
+        IL agents deterministically copying the expert's behaviors tend to fail miserably,
+        even with a slight amount of domain shift between the expert and agent environments.
+
+
+  \item[Task adaptation]
+        IL agents are designed to focus on accomplishing only a single,
+        narrowly defined task.
+        Therefore,
+        when given a new task,
+        the agent has to start the learning process again from the ground up,
+        even if it has already learned a task that is related to and shares the same structure with the new one.
+        This learning process can be redundant and expensive.
+        On the contrary,
+        humans do not learn a new task from scratch.
+        Instead,
+        humans often leverage the knowledge learned from previous tasks to solve such related tasks in a short time.
+\end{description}
+
+The need for generalizable IL agents is ubiquitous,
+given the dynamic of the real-world environment.
+Still,
+generalization remains a fundamental challenge for modern imitation learning.
+Therefore,
+\textbf{the primary goal of this dissertation is to improve the generalization of IL agents by tackling the domain and task adaptation problems}.
+This dissertation addresses the problem by utilizing adversarial learning to design objective functions for the agent's learning process.
+Adversarial learning allows the agent interacts with the environment and discriminates the expert's behaviors from its own interactions.
+Leveraging this unique learning method,
+the agent can effectively extract the underlying structure of the task from the expert demonstrations instead of only directly imitating the expert's behaviors.
+These extracted features later help the agent adapt its previously learned knowledge to a new domain or new task effectively.

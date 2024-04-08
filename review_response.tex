@@ -1,0 +1,73 @@
+\documentclass[12pt,english]{scrartcl}
+
+%% Language
+\usepackage{babel}
+\usepackage[babel]{microtype}
+\usepackage[babel]{csquotes}
+
+%% Fonts
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+
+%% Other packages
+\usepackage{hyperref}
+\usepackage{booktabs}
+\usepackage{soul}
+\usepackage{changes}
+
+%% Caption
+\usepackage[hang,justification=justified,font=small,labelfont=bf,labelsep=period]{caption}
+
+%% Bibliography
+\usepackage[backend=biber,style=ieee,dashed=false,url=false,isbn=false,defernumbers=true,refsection=section]{biblatex}
+\bibliography{References/references.bib}
+
+%% Review Response
+\usepackage{ReviewResponse/reviewresponse}
+
+\usepackage{amsmath}
+
+%% Figures in minipage
+\usepackage{graphicx}
+\usepackage{float}
+
+%% Define new commands
+\newcommand{\Figure}[3]{%
+  \begin{minipage}{#1}
+    \begin{figure}[H]
+      \centering
+      \includegraphics[width=\textwidth]{#2}
+      \caption{#3}
+    \end{figure}
+  \end{minipage}
+}
+
+\newcommand{\Table}[2]{%
+  \begin{table}[h!]
+    \centering
+    \caption{#2}
+    \input{#1}
+  \end{table}
+}
+
+\newcommand\DAIL{DAIL--GAN}
+\newcommand\TAIL{TAIL--GAN}
+\newcommand\DTAIL{DTAIL--GAN}
+
+\title{Improving Generalization in Imitation Learning with Adversarial Learning}
+\author{Nguyen Duc Tho}
+
+\begin{document}
+
+\maketitle
+
+% Cover Letter
+\input{ReviewResponse/cover_letter.tex}
+
+\input{ReviewResponse/reviewer_1.tex}
+\input{ReviewResponse/reviewer_2.tex}
+\input{ReviewResponse/reviewer_3.tex}
+\input{ReviewResponse/reviewer_4.tex}
+
+
+\end{document}

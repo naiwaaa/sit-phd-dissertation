@@ -1,0 +1,23 @@
+This section discusses the overall performance of the proposed \DAIL{} agent, followed by the importance of the feature extractor.
+
+The quantitative and qualitative results assessed from the previous section have shown the potential of the proposed \DAIL{} agent in addressing the domain adaptation problem in imitation learning.
+On both low- and high-dimensional tasks, \DAIL{} could imitate expert behaviors from their demonstrations.
+Especially, the policies acquired by \DAIL{} could even generate natural and human-like behaviors despite the high complexity of the Door-Door and Hammer-Hammer tasks.
+This indicates that the proposed \DAIL{} could scale up to a complex manipulation task with a high-dimensional state and action space.
+Furthermore, the proposed agent could adapt the learned policies to a distinct learner domain and accomplish low-dimensional tasks without being affected by the presence of domain shift between expert and learner domains.
+Although the success rate remained limited and depended on the complexity of the tasks, the proposed agent can be improved to provide a better performance toward practical real-world imitation learning tasks.
+
+The promising performance of the proposed \DAIL{} also praises the effectiveness of applying adversarial learning to train the agent.
+The adversarial learning enabled the feature extractor $F$ to learn both domain-shared and domain-specific features between expert and learner domains.
+In Figure \ref{ch:DAIL:fig:PendulumCartPole}, the learned policy tended to move the cart to the left by a strong force initially,
+then followed by small forces;
+this behavior was similar to that of the expert demonstration.
+Such a similarity indicated that the feature extractor could extract the structural similarities or domain-shared features between expert and learner domain,
+resulting in comparable behaviors between them.
+Furthermore,
+it can also be observed in Figure \ref{ch:DAIL:fig:PendulumCartPole} that although strong forces were applied,
+the learned policies still managed to keep the pole stay upright.
+This showed that the feature extractor was able to learn the differences between the expert and learner domains so that it could adapt the learned policies to the learner domain and accomplish the task.
+In summary,
+adversarial learning has proven its important role in \DAIL{}.
+It could allow the agent to acquire shareable behaviors in both domains by learning the domain-shared features and adapting those behaviors to the learner domain regardless of the domain shift by learning the domain-specific features.

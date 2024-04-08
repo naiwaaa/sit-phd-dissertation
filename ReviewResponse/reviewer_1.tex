@@ -1,0 +1,94 @@
+\reviewer{Prof. Sumiko Miyata}
+
+
+% ---------
+% Comment 1
+% ---------
+
+\begin{revcomment}
+  In your dissertation,
+  you mentioned that there are other studies in imitation learning.
+  I did not deeply understand the differences between existing imitation learning and your proposal.
+  Moreover,
+  in your slides,
+  you didn't cite any imitation learning references.
+  It is difficult to understand your novelty compared to existing studies.
+  % You need to add differences in your slides and dissertation.
+\end{revcomment}
+
+\begin{revresponse}
+  Thank you very much for your valuable comment.
+
+  I would like to highlight the differences and novelty of my proposals compared to existing imitation learning (IL) studies.
+
+  The existing IL studies mainly focus on training an agent to perform a single task well in a given domain.
+  Although they achieved high performance on a single task under a specific domain,
+  they are not able to generalize their learned behaviors to tackle future unseen situations.
+  Moreover,
+  when given a new task,
+  those agents have to start the learning process again from the ground up,
+  even if it has already learned a task that is related to and shares the same structure with the new one.
+  The problem is referred to as generalization in IL and remains a fundamental challenge for modern IL.
+  Therefore,
+  the primary goal of my dissertation is to improve the generalization of IL agents.
+
+  Unlike those approaches,
+  In order to address the problem,
+  I utilized adversarial learning to design objective functions for the agent's learning process.
+  It allows the agent to effectively extract the underlying structure of the task.
+  These extracted features help the agent adapt its learned knowledge to a new domain or new task effectively, resulting in an improvement in the agent's generalization ability as shown in the experimental results.
+
+  These information was discussed in my dissertation on pages 3-4 and 16-18.
+  I am really sorry for not including them in the presentation slides.
+  The slides have been updated in order to clarify the novelty and contributions of my proposal.
+
+  \begin{correction}
+    No correction was made in the dissertation.
+  \end{correction}
+\end{revresponse}
+
+
+% ---------
+% Comment 2
+% ---------
+
+\begin{revcomment}
+  How to collect expert demonstrations?
+\end{revcomment}
+
+\begin{revresponse}
+  Thank you very much for your question.
+
+  In the experiments, I considered six simulated tasks with varying difficulties:
+  \begin{itemize}
+    \item Easy: Pendulum and CartPole
+    \item Medium: WindowOpen and WindowClose
+    \item Hard: Door and Hammer
+  \end{itemize}
+
+  In order to train and adapt the proposed IL agents,
+  expert demonstrations for all tasks must be provided.
+  For the easy and medium tasks
+  (i.e., Pendulum, CartPole, WindowOpen, and WindowClose),
+  I utilized an RL method and trained it on each task in order to create an expert RL agent.
+  After that,
+  the demonstrations were collected by executing the trained expert RL agent in the simulated task a number of times.
+
+  On the other hand,
+  since the Door and Hammer tasks have a high difficulty level,
+  I leveraged a publicly available dataset \cite{Task_Adroit}.
+  The dataset was collected by humans using the Mujoco HAPTIX system \cite{Mujoco_HAPTIX}.
+  The system is a combination of motion capture,
+  physics simulation,
+  and stereoscopic visualization to enable a user to interact with and manipulate virtual objects in the simulation.
+
+  This information was discussed in my dissertation on pages 25-26.
+  I also have added these details to the presentation slides.
+
+  \printpartbibliography{Task_Adroit, Mujoco_HAPTIX}
+
+  \begin{correction}
+    No correction was made in the dissertation.
+  \end{correction}
+
+\end{revresponse}

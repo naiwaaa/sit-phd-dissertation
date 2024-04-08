@@ -1,0 +1,21 @@
+The task problem in imitation learning can be formalized as an episodic Markov decision process (MDP).
+A MDP $\mathbb{M}^-_x$ for a task $x$ with finite time horizon $H_x$ \cite{RL_AnIntroductionBook} is represented as the following equation:
+\begin{equation}
+  \mathbb{M}^-_x = (\mathcal{S}_x, \mathcal{A}_x, P_x, \gamma, H_x)
+\end{equation}
+where
+$\mathcal{S}_x$ and $\mathcal{A}_x$ represent the continuous state and action spaces, respectively;
+$P_x(s'|s,a)$ denotes the transition probability function;
+$\gamma$ is the discount factor.
+A stochastic policy $\pi_x(s,a)$ for $\mathbb{M}^-_x$
+describes a mapping from each state to the probability of taking each action.
+The goal of an IL agent is to learn an optimal policy $\pi^{*}_x$ that imitates the expert policy $\hat{\pi}_x$ given demonstrations from that expert.
+An expert demonstration for a task $x$ is defined as a sequence of state--action pairs $\tau_{x} = \{(\hat{s}^t_{x}, \hat{a}^t_{x}) : t \in [0, H_x]\}$.
+It should be noted that the set of expert demonstrations is collected under different domain and settings.
+
+Let $\mathbb{M}^-_{S}$ denote a source task,
+which provides prior knowledge $\mathcal{K}_S$ that is accessible by the target task $\mathbb{M}^-_T$,
+such that by leveraging $\mathcal{K}_S$,
+the target agent learns better in the target task $\mathbb{M}^-_T$.
+The main objective is to learn an optimal policy $\pi^{*}_{T}(\mathcal{K}_S, \mathcal{K}_T)$ for target tasks,
+by leveraging $\mathcal{K}_S$ from $\mathbb{M}^-_S$.

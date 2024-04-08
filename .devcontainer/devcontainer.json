@@ -1,0 +1,83 @@
+{
+  "name": "sit-phd-dissertation-dev-env",
+  "dockerFile": "./Dockerfile",
+  "runArgs": ["--name", "sit-phd-dissertation-dev-container"],
+  "hostRequirements": {
+    "cpus": 4
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "james-yu.latex-workshop",
+        "EditorConfig.EditorConfig",
+        "esbenp.prettier-vscode"
+      ],
+      "settings": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+        "editor.formatOnSave": true,
+        "explorer.excludeGitIgnore": true,
+        "files.insertFinalNewline": true,
+        "files.trimTrailingWhitespace": true,
+        "files.trimFinalNewlines": true,
+        "latex-workshop.bibtex-fields.sort.enabled": true,
+        "latex-workshop.bibtex-format.sort.enabled": false,
+        "latex-workshop.bibtex-format.surround": "Quotation marks",
+        "latex-workshop.bibtex-format.trailingComma": true,
+        "latex-workshop.latex.autoClean.run": "onBuilt",
+        "latex-workshop.latex.clean.subfolder.enabled": true,
+        "latex-workshop.latex.clean.fileTypes": [
+          "*.aux",
+          "*.bbl",
+          "*.blg",
+          "*.idx",
+          "*.ind",
+          "*.lof",
+          "*.lot",
+          "*.out",
+          "*.toc",
+          "*.acn",
+          "*.acr",
+          "*.alg",
+          "*.glg",
+          "*.glo",
+          "*.gls",
+          "*.fls",
+          "*.log",
+          "*.fdb_latexmk",
+          "*.snm",
+          "*.synctex(busy)",
+          "*.synctex.gz(busy)",
+          "*.nav",
+          "*.vrb",
+          "*.nlg",
+          "*.nlo",
+          "*.nls"
+        ],
+        "latex-workshop.linting.chktex.enabled": true,
+        "latex-workshop.linting.chktex.exec.args": [
+          "-wall",
+          "-n22",
+          "-n30",
+          "-e16",
+          "-q",
+          "--inputfiles"
+        ],
+        "latex-workshop.latexindent.args": [
+          "-c",
+          "%DIR%/",
+          "%TMPFILE%",
+          "-y=defaultIndent: '  '"
+        ],
+        "latex-workshop.linting.chktex.convertOutput.column.chktexrcTabSize": 2,
+        "latex-workshop.synctex.afterBuild.enabled": true,
+        "latex-workshop.view.autoFocus.enabled": true,
+        "[latex]": {
+          "editor.defaultFormatter": "James-Yu.latex-workshop"
+        },
+        "[bibtex]": {
+          "editor.defaultFormatter": "James-Yu.latex-workshop"
+        }
+      }
+    }
+  }
+}

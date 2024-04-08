@@ -1,0 +1,37 @@
+\chapter{Discussion\label{ch:Discussion}}
+
+
+\renewcommand{\SectionsDir}{Chapter6/Sections}
+\renewcommand{\SubsectionsDir}{Chapter6/Sections/Subsections}
+\renewcommand{\FigsDir}{Chapter6/Figs}
+\renewcommand{\TablesDir}{Chapter6/Tables}
+
+
+This chapter discusses the potential of adversarial learning in improving imitation learning generalization.
+In addition, it also summarized the advantages and remaining issues of the proposed \DAIL{}, \TAIL{}, and \DTAIL{} agents.
+
+% improve generalization in imitation learning and the feasibility of utilizing the proposed agents in real-world tasks
+
+In Chapter \ref{ch:DAIL}, the adversarial learning process allowed the \DAIL\ agent to extract domain-shared and domain-specific features for adapting its knowledge from the expert domain to the learner domain.
+The experiment results showed that it could provide high performance on low-dimensional tasks but was unable to complete high-dimensional tasks.
+Then, a similar learning process is applied to train the \TAIL\ agent by learning the similarities and differences between source and target tasks.
+The results revealed that \TAIL\ can accomplish low- and high-dimensional tasks with a relatively high success rate.
+This difference is because adversarial learning relies on the discriminator's learning performance.
+When training \DAIL\ on high-dimensional tasks, the differences between the expert and learner domains are minor, making it challenging for the discriminator to distinguish both domains at the beginning of the training process.
+This results in poor domain-specific feature extraction and reduces the agent's performance on high-dimensional tasks.
+On the other hand, the differences between source and target tasks when training \TAIL\ are significant.
+Thus, the discriminator can efficiently extract the task-specific features resulting in a high agent's performance on low- and high-dimensional tasks.
+
+Despite that, the results of \DAIL{}, \TAIL{} agents have proved the capability and flexibility of applying adversarial learning to training imitation learning agents.
+With the same objective function, adversarial learning can help the agents extract different features depending on the training data.
+For instance, in \DAIL{} agent, adversarial learning enables it to extract domain-shared and domain-specific features.
+On the other hand, in \TAIL{} agent, the similarity and differences between source and target tasks are extracted.
+Moreover, in Chapter \ref{ch:DTAIL}, a more challenging problem was considered, in which a trained agent on a source task faces a new target task and must optimize its overall performance on both tasks.
+The \DTAIL\ agent was proposed to address this problem.
+Although its performance remains limited,
+the promising results of \DTAIL{} agent also highlight the potential of adversarial learning in developing a more general-purpose agent.
+
+The main limitation of the proposed agents is that they were only evaluated in simulated environments. Thus, their performance in real-world situations still needs to be discovered. It would be beneficial to evaluate them in physical robots in order to verify if they can maintain high performance in the complex physics of the real world.
+
+
+% How much did you achieve the research goal?

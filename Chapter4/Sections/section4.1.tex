@@ -1,0 +1,24 @@
+Imitation learning has been growing in popularity and has achieved some successes in numerous tasks, including robotics control \cite{IL_Robotics_1, IL_Robotics_2, IL_Robotics_3} and autonomous driving \cite{IL_Driving_1, IL_Driving_2, IL_Driving_3, IL_Driving_4}.
+Despite certain achievements,
+IL agents are designed to focus on accomplishing only a single, narrowly defined task.
+Therefore, when given a new task, the agent has to start the learning process again from the ground up, even if it has already learned a task that is related to and shares the same structure with the new one.
+% On the other hand,
+% humans are capable of efficiently generalizing the learned knowledge and leveraging that to solve such related tasks in a short time.
+On the other hand,
+humans possess an astonishing ability in the learning process, where the knowledge learned from source tasks can be leveraged for learning a new task.
+For example,
+an infant can reuse and augment the motor skills obtained when he learns to walk or uses his hand,
+for more complex tasks later in his life (e.g., riding a bike).
+Transfer learning (TL) is a technique based on this idea.
+TL enables the agent to reuse its knowledge learned from a source task in order to facilitate learning a new target task,
+resulting in a more generalized agent.
+
+
+Recent studies have applied TL to RL/IL agents and achieved some success,
+especially in robot manipulation tasks since these tasks usually share a common structure (i.e., robot arm) \cite{TL_Robotics_1, TL_Robotics_2, TL_Robotics_3}.
+However, transfer learning requires training the agent on the source task first.
+Then, the trained agent is adapted to the target task using fine tuning.
+Unlike transfer learning,
+the \TAIL{} agent is proposed, which utilizes adversarial learning to train and adapt the agent simultaneously.
+The evaluation results show that the proposed agent has a better learning performance compared to existing transfer learning
+approaches.

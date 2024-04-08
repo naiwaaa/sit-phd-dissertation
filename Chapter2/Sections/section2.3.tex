@@ -1,0 +1,75 @@
+\subsection{Adversarial Learning}
+
+The objective of adversarial learning is to generate new samples that are indistinguishable from the training data.
+Adversarially learned models such as generative adversarial networks (GAN) \cite{GAN_Original} are a combination of two neural networks:
+
+\begin{itemize}
+  \item The generator $G$ tries to learn a data distribution and produces realistic fake data from a random noise $z$.
+        The fake examples produced by the generator are used as negative examples for training the discriminator.
+  \item The discriminator $D$ estimates the probability that the sample comes from the real data distribution or not.
+        In other words, it learns to distinguish fake data from real data.
+        The discriminator also sends feedback to the generator so that the generator can improve the fake examples.
+\end{itemize}
+
+\Figure{\textwidth}{\FigsDir/GAN_Architecture.png}%
+{An illustration of a general GAN.\label{ch:Background:fig:GAN_Architecture}}
+
+The optimal solution is a Nash equilibrium, which happens when the discriminator is no better than a random guess, meaning that the discriminator cannot discriminate between real and fake examples.
+The objective function is defined as follows:
+
+\[
+  \min_{G} \max_{D} L(G, D) = \mathbb{E}[logD(x)] + \mathbb{E}[log(1-D(G(z)))]
+\]
+
+where, $D(x)$ is probability that an input example $x$ is real estimated by the discriminator, $G(z)$ is the fake example produced by the generator.
+
+Both networks $G$ and $D$ are trained by backpropagating the loss for each network.
+The training alternates between training the generator and the discriminator.
+For each training epoch, the generator generates fake examples.
+These fake examples are then combined with the real training data and used for training the discriminator as a binary classifier.
+The discriminator is trained to classify training data as real and the generated data as fake.
+The goal for the generator is to minimize $log(1-D(G(z)))$, so it fools the discriminator.
+
+Generative adversarial network (GAN) is the most popular in adversarially learned models.
+The architecture of GANs is illustrated in Figure \ref{ch:Background:fig:GAN_Architecture}.
+Although it is originally proposed for unsupervised learning \cite{GAN_CAPTCHA,GAN_ImageCompression,GAN_ImageTranslation},
+GAN has also proved its capability in supervised learning, reinforcement learning, and imitation learning fields.
+
+
+\subsection{Generative Adversarial Imitation Learning}
+
+Inspired by GAN, Generative Adversarial Imitation Learning (GAIL) was proposed to train an IL agent.
+The architecture of GAIL also consists of two neural networks: generator $G$ and discriminator $G$.
+The generator $G$ aims to generate actions similar to the expert's behaviors as closely as possible.
+The discriminator $D$ tries to distinguish between expert actions and generator actions.
+GAIL optimizes the following objective function:
+
+\[
+  \min{G} \max{D} L(G, D) = \mathbb{E}_\pi[\log{D(s,a)}] + \mathbb{E}_\pi[\log{(1-D(s, a))}]
+\]
+
+GAIL uses TRPO \cite{RL_Algo_TRPO} to find an optimal policy
+The GAIL algorithm is presented in Algorithm \ref{ch:Background:alg:GAIL}.
+
+\begin{algorithm}
+  \caption{GAIL\label{ch:Background:alg:GAIL}}
+
+  \begin{algorithmic}[1]
+    \Input
+    \Desc{$\mathcal{D}_\mathcal{E} = \{ \tau^i_\mathcal{E} : i \in [1,N] \}$}{\hspace{5em}A set of expert demonstrations}
+    \EndInput
+
+    \State Randomly initialize generator $G$ and discriminator $D$
+    \For {i = 0,1,2,...}
+    \State Sample trajectories $\tau^i \sim \pi$
+    \State Update the discriminator with the gradient
+    \[
+      \mathbb{E}_{\tau_\mathcal{E}}[\nabla_D \log{D(s,a)}] + \mathbb{E}_{\tau^i}[\nabla_D \log{(1 - D(s,a))}]
+    \]
+    \State Update the policy $\pi$ using TRPO with the cost function $\log(1-D(s,a))$.
+    \EndFor
+    \Output
+    \Desc{$\pi^*$}{Learned optimal policy}
+    \EndOutput
+  \end{algorithmic}
+\end{algorithm}

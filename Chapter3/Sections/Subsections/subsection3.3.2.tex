@@ -1,0 +1,26 @@
+The discriminator $D$ is designed to distinguish between expert feature vector $\mathbf{f}_\mathcal{E}$ and learner feature vector $\mathbf{f}_\mathcal{L}$.
+Specifically,
+$D$ receives a feature vector $\mathbf{f}_x$ outputs a probability $\mathrm{Pr}(x=\mathcal{E}|\mathbf{f}_x)$ to classify whether $\mathbf{f}_x$ is from $\mathcal{E}$ or $\mathcal{L}$.
+Meanwhile,
+the generator $G$ aims to generate an action $a^t_{L}$ so that $\mathbf{f}_\mathcal{L} = F(s^t_\mathcal{L}, a^t_\mathcal{L})$ looks as similar as possible to $\mathbf{f}_\mathcal{E}$.
+In the proposed \DAIL{} agent,
+the adversarial loss \cite{GAN_Original} is applied for both networks:
+
+\begin{align}
+  \mathfrak{L}_{GAN}(G, D) & =
+  \mathbb{E}[
+    \log{D(F(s^t_\mathcal{E}, a^t_\mathcal{E}))}
+  ] + \mathbb{E}[
+    \log{(1-D(F(s^t_\mathcal{L}, a^t_\mathcal{L})))}
+  ]                                        \\
+                           & = \mathbb{E}[
+    \log{D(F(s^t_\mathcal{E}, a^t_\mathcal{E}))}
+  ] + \mathbb{E}[
+    \log{(1-D(F(s^t_\mathcal{L}, G(F(
+      s^t_\mathcal{E}, a^t_\mathcal{E}
+      )))))}
+  ]
+\end{align}
+
+The optimal policy is achieved using a RL-based policy gradient,
+which relies on reward signal $r=-\log{D(F(s^t_\mathcal{E}, a^t_\mathcal{E}))}$ provided by the learned discriminator.

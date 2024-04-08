@@ -1,0 +1,29 @@
+% \begin{table}[tb]
+%   
+%   \centering
+%   \begin{tabular}{cccc}
+%     \toprule
+%     & $\textbf{PCC}$ & $\textbf{SROCC}$ & $\textbf{RMSE}$\\
+%     \midrule
+%     \cite{CumulativeQoE_Assessing} & 0.4292 & 0.4048 & 7.931 \\
+%     Proposed Model & \textbf{0.7664} & \textbf{0.7857} & \textbf{4.654} \\
+%     \bottomrule
+%   \end{tabular}
+%   \label{tbl:PerformanceDataset}
+% \end{table}
+
+\begin{table}[tb]
+\caption{Prediction performance of the reference model and our proposed model over training and testing set}
+\centering
+\begin{tabular}{|l|l|c|c|c|}
+\hline
+& & PCC & SROCC & RMSE \\
+\hline
+\multicolumn{1}{|l|}{\multirow{2}{*}{Training}}   & \multicolumn{1}{l|}{\cite{CumulativeQoE_Assessing}}                  & 0.7413       & 0.6420         & 10.6187        \\
+\multicolumn{1}{|l|}{}                                & \multicolumn{1}{l|}{Proposed model}  & \textbf{0.9441}       & \textbf{0.8604}         & \textbf{4.1525}         \\
+\hline
+\multicolumn{1}{|l|}{\multirow{2}{*}{Testing}}    & \multicolumn{1}{l|}{\cite{CumulativeQoE_Assessing}}                  & 0.2777       & 0.2381         & 7.5135         \\
+\multicolumn{1}{|l|}{}                                & \multicolumn{1}{l|}{Proposed model}  & \textbf{0.7664}       & \textbf{0.7857}         & \textbf{4.6538}         \\
+\hline
+\end{tabular} \label{tbl:PerformanceDataset}
+\end{table}

@@ -1,0 +1,34 @@
+Consider a sequential decision-making problem in which an agent is faced with a task of influencing an environment through the actions it takes.
+At each time step,
+the agent observes the environment and must decide on which action to perform.
+The agent affects the environment through these actions.
+This action alters the environment and determines the immediate reward the agent receives.
+The interaction between the agent and its environment is formalized as a \textit{Markov decision process} (MDP)~\cite{RL_Bellman1957}.
+This dissertation focuses on the episodic finite-horizon MDP,
+defined as follows.
+
+\[\mathbb{M} = (\mathcal{S},\mathcal{A},P,R,\gamma,H)\]
+
+\begin{itemize}
+  \item The state space $\mathcal{S}$ is a finite set of states that the environment can have.
+  \item The action space $\mathcal{A}$ is a finite set of actions the agent is allowed to take after observing a state.
+  \item The transition function $P(\cdot|s,a)$ gives the probability of transition $P(s'|s,a) = \mathrm{Pr}(s^{t+1}=s'|s^t=s,a^t=a)$ at time step $t$ from state $s$ to state $s'$ under action $a$.
+  \item The reward function $R: \mathcal{S} \times \mathcal{A} \to \mathbb{R}$ gives the immediate reward $R(s,a)$ for taking an action $a$ after observing state $s$.
+  \item $\gamma \in [0,1)$ is the discount factor.
+  \item The horizon $H \in \mathbb{N}$ is the number of time steps in each episode.
+\end{itemize}
+
+The decision rules that determine the agent's action for state $s$ is a policy,
+denoted by $\pi(a|s)$.
+In other words,
+the policy $\pi(a|s)$ determines the agent's behaviors.
+
+Figure \ref{ch:Background:fig:InteractionAgentEnv} illustrated the interaction between the agent and its environment.
+At each time step $t$,
+the agent observes state $s^t$ and takes an action $a^t$ according to its policy $\pi(a|s)$.
+The environment transitions to $s^{t+1}$ according to the transition distribution $P(\cdot|s^t,a^t)$.
+The agent then received a reward $r^t = R(s^t,a^t)$ and observes the state $s^{t+1}$ of the next time step $t+1$.
+This interaction loop between the agent and environment continues for a total of $H$ time steps and generates a trajectory $\tau = (s^0,a^0,s^1,a^1,\dots,s^H,a^H)$
+
+\Figure{0.7\textwidth}{\FigsDir/RL_AgentEnvInteraction.png}%
+{The agent-environment interaction in Markov decision process.\label{ch:Background:fig:InteractionAgentEnv}}

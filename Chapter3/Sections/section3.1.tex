@@ -1,0 +1,41 @@
+Imitation learning works by extracting information about the behavior of the expert and learning a mapping between the observation state and demonstrated behavior \cite{schaal1999imitation,IL_Survey_RobotLearning}.
+Unfortunately,
+the traditional imitation learning algorithms are still far from being comparable with the human imitation due to the lack of the following abilities:
+
+\begin{enumerate}
+  \item
+        Humans tend to imitate the goal of a task rather than a particular behavior of the expert \cite{baker2007goal,bao2017imitation}.
+  \item
+        Humans can recognize structural differences (i.e., domain shift) and similarities between the expert and themselves in order to adapt their behaviors accordingly \cite{tomov2021multi}.
+\end{enumerate}
+
+The first aspect of human imitation can be modeled using Inverse Reinforcement Learning (IRL)~\cite{ng2000algorithms, abbeel2004apprenticeship}.
+IRL seeks to estimate a reward function to explain an expert behavior from demonstrations and subsequently train an agent on it \cite{ng2000algorithms,abbeel2004apprenticeship,levine2011nonlinear,ziebart2008maximum}.
+Recent studies \cite{IL_Model_GAIL,DAIL_Model_DAIL,pmlr-v70-baram17a,behbahani2019learning,10.5555/3294996.3295138,zhang2020cgail,chi2020collaborative,zhou2020modeling} utilize Generative Adversarial Network (GAN) \cite{GAN_Original}, which has a discriminator to judge whether a given behavior is from an expert or agent, and then a policy is trained using the discriminator as a reward.
+However, these approaches do not take into account the second aspect of human learning: imitation with the presence of domain shift between the expert and the agent.
+Such domain shift can mislead the feature learning, resulting in poor task performance.
+
+
+The problem is formalized as domain adaptation in imitation learning,
+which is a process of learning how to perform a task optimally in the learner agent domain,
+given demonstrations of the task in a distinct expert domain
+\cite{DAIL_Model_DAIL}.
+In order to solve this problem,
+the authors in
+\cite{DAIL_Model_DAIL} proposed a two-step approach:
+alignment followed by adaptation.
+Firstly,
+the Generative Adversarial MDP Alignment (GAMA) was introduced to learn the state -- action maps from demonstrations.
+Then,
+in the adaptation step, an optimal policy for the learner domain was obtained using the learned alignment from the first step.
+Despite showing a promising result,
+their agent was evaluated only in low-dimensional tasks.
+Besides,
+they updated the learned policy by using behavioral cloning, which was vulnerable to cascading errors.
+This could lead to poor adaptation performance in more complex high-dimensional tasks.
+
+Unlike previous studies, a novel agent, namely \DAIL{}, is proposed that aims to learn both domain-shared and domain-specific features.
+Such features enable the agents to learn optimal policies without being affected by the shift between two domains.
+The learning procedure can be achieved within one training process by utilizing adversarial learning \cite{GAN_Original}.
+It enables the agent to learn the extracted features, while at the same time, seeking for an optimal learner domain policy.
+A comprehensive experiment on both low and high-dimensional tasks is conducted to evaluate the performance of the proposed \DAIL{} agent.
